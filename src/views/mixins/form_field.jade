@@ -1,0 +1,25 @@
+mixin form_field(input)
+  if input !== 'row'
+    .input_field
+      - input.type = input.hasOwnProperty('type') ? input.type : 'text'; 
+      case input.type
+        when 'text'
+          input&attributes(input)
+        when 'number'
+          input&attributes(input)
+        when 'select'
+          - values = input.values;
+          - delete input.values;
+          - delete input.type;
+          select&attributes(input)
+            option(disabled, selected)= input.placeholder 
+            each value in values
+              option(value=value.key)= value.value
+        when 'submit'
+          - delete input.type
+          button(type='submit', class=input.class)= input.placeholder
+  else
+    .row
+      //insert a row
+      
+  

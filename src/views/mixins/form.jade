@@ -1,0 +1,8 @@
+include form_field
+
+mixin form(title, inputs)
+  h4= title
+  form&attributes(attributes)
+    each input in inputs
+      +form_field(input)
+      

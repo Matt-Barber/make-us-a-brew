@@ -1,0 +1,9 @@
+mixin nav(site_name, links)
+  nav&attributes(attributes)
+    .nav-wrapper
+      .brand-logo.center= site_name
+      ul.right.hide-on-med-and-down
+        if links
+          each link in links
+            li
+              a(href=link.link)=link.text

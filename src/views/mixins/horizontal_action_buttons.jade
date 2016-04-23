@@ -1,0 +1,9 @@
+mixin horizontal_action_buttons(colour, icon, buttons) 
+  .fixed-action-btn.horizontal(style='bottom:45px; right:24px;')
+    a.btn-floating.btn-large(class=colour)
+      i.large.material-icons= icon 
+    ul
+      each button in buttons 
+        li
+          span&attributes(button.attributes)
+            i.material-icons= button.icon
