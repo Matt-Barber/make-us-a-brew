@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Make us a brew</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body class="brown lighten-3">
+    <nav role="navigation" class="brown darken-1">
+      <div class="nav-wrapper">
+        <div class="brand-logo center">Make us a brew</div>
+        <ul class="right hide-on-med-and-down">
+        </ul>
+      </div>
+    </nav>
+    <div id="index-banner" class="section no-pad-bot">
+      <div class="container">
+        <div class="row center"><span id="selector_btn" data-target="selector" class="modal-trigger"><img src="img/cup.png" class="responsive-img"></span>
+          <div class="modal" id="selector"> 
+            <div class="modal-content brown lighten-3">
+              <div id="slt_head"></div>
+              <div id="slt_content"></div>
+            </div>
+            <div class="modal-footer brown lighten-3">
+              <!--change green to colour-->
+              <button class="modal-action modal-close wave-effect waves-green btn-flat" id="can_make" value="Can">Can</button>
+              <!--change green to colour-->
+              <button class="modal-action modal-close wave-effect waves-green btn-flat" id="cannot_make" value="Can't">Can't</button>
+            </div>
+          </div>
+          <h5 class="header light">Solving arguments, and sharing the love</h5>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row center">
+          <div style="bottom:45px; right:24px;" class="fixed-action-btn horizontal"><a class="btn-floating btn-large orange darken-1"><i class="large material-icons">mode_edit</i></a>
+            <ul>
+              <li><span id="add_btn" data-target="add_form" class="btn-floating blue-grey darken-2 modal-trigger"><i class="material-icons">add</i></span></li>
+              <li><span id="delete_btn" data-target="add_form" class="btn-floating blue-grey darken-2 modal-trigger"><i class="material-icons">delete</i></span></li>
+            </ul>
+          </div>
+          <div class="modal" id="add_form"> 
+            <div class="modal-content brown lighten-3">
+              <h4>Add Drinker</h4>
+              <form id="add_form_data" method="post">
+                <div class="input_field">
+                  <input placeholder="Name" name="name" class="validate" type="text" required="required"/>
+                </div>
+                <div class="row">
+                  <!--insert a row-->
+                  
+                </div>
+                <div class="input_field">
+                  <select placeholder="What do they drink?" name="drink" class="browser-default" required="required">
+                    <option disabled="disabled" selected="selected">What do they drink?</option>
+                    <option value="Coffee">Coffee</option>
+                    <option value="tea">Tea</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="row">
+                  <!--insert a row-->
+                  
+                </div>
+                <div class="input_field">
+                  <select placeholder="Do they take milk?" name="milk" class="browser-default" required="required">
+                    <option disabled="disabled" selected="selected">Do they take milk?</option>
+                    <option value="1">yes</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+                <div class="row">
+                  <!--insert a row-->
+                  
+                </div>
+                <div class="input_field">
+                  <input placeholder="How many sugars?" name="sugar" type="number" required="required" min="0" max="5"/>
+                </div>
+                <div class="row">
+                  <!--insert a row-->
+                  
+                </div>
+                <div class="input_field">
+                  <button type="submit" class="waves-effect waves-green btn-flat">submit</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer brown lighten-3">
+              <!--change green to colour-->
+              <button class="modal-action modal-close wave-effect waves-green btn-flat"></button>
+              <!--change green to colour-->
+              <button class="modal-action modal-close wave-effect waves-green btn-flat"></button>
+            </div>
+          </div>
+          <div class="modal" id="remove_form"> 
+            <div class="modal-content brown lighten-3">
+              <h4>Remove Drinker</h4>
+              <form id="remove_form_data" method="post">
+                <div class="input_field">
+                  <select placeholder="Who will you remove?" id="remove_name" name="name" class="browser-default" required="required">
+                    <option disabled="disabled" selected="selected">Who will you remove?</option>
+                  </select>
+                </div>
+                <div class="row">
+                  <!--insert a row-->
+                  
+                </div>
+                <div class="input_field">
+                  <button type="submit" class="waves-effect waves-green btn-flat">Remove</button>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer brown lighten-3">
+              <!--change green to colour-->
+              <button class="modal-action modal-close wave-effect waves-green btn-flat"></button>
+              <!--change green to colour-->
+              <button class="modal-action modal-close wave-effect waves-green btn-flat"></button>
+            </div>
+          </div>
+          <div class="row">
+            <h5>Current Drinkers</h5>
+            <div id="current-drinkers" class="col s12"></div>
+          </div>
+        </div>
+      </div>
+      <footer class="page-footer brown darken-1">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">From the barber shop</h5>
+              <p class="grey-text text-lighten-4">A crazy haired developer, caught inside a crazier haired developer</p>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Find out more</h5>
+              <ul>
+                <li><a href="https://twitter.com/mfmbarber" class="white-text">Twitter</a></li>
+                <li><a href="https://github.com/matt-barber" class="white-text">Github</a></li>
+              </ul>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Other crazy contraptions</h5>
+              <ul>
+                <li><a href="#!" class="white-text">Watch this space</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            <Made>with love</Made><span class="orange-text text-lighten-3">
+              <all>code free to use</all></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/picker.js"></script>
+    <script src="js/table.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
