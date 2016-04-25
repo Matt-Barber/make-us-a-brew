@@ -5,45 +5,46 @@ include mixins/nav
 doctype html
 html
   include includes/head
-  body.brown.lighten-3
+  body.brown.darken-1
     +nav('Make us a brew')(class='brown darken-1', role='navigation')
-    #index-banner.section.no-pad-bot
-      .container
-        .row.center
-          span#selector_btn.modal-trigger(data-target='selector')
-            img.responsive-img(src='img/cup.png')
-          -
-            modal_content = {class : 'teal'};
-            can_btn = { id: 'can_make', value: 'Can' };
-            cant_btn = {id: 'cannot_make', value : 'Can\'t' };
-          +modal('brown lighten-3', can_btn, cant_btn)(id = 'selector')
-              #slt_head
-              #slt_content
-              
-          h5.header.light Solving arguments, and sharing the love
-      .container
-        .row.center
-          -
-            colour = 'orange darken-1';
-            icon  = 'mode_edit';
-            add_span = {icon: 'add', attributes: { id: 'add_btn', 'data-target': 'add_form', class: 'btn-floating blue-grey darken-2 modal-trigger' } };
-            delete_span = {icon: 'delete', attributes: { id: 'delete_btn', 'data-target': 'add_form', class: 'btn-floating blue-grey darken-2 modal-trigger' } };
-          +horizontal_action_buttons(colour, icon, [add_span, delete_span])
-          -
-            name = {placeholder: 'Name', name: 'name', class: 'validate', type: 'text', required: true};
-            drink = {placeholder: 'What do they drink?', name:'drink', class: 'browser-default', type: 'select', required: true, values: [{key:'Coffee', value: 'Coffee'}, {key: 'tea', value: 'Tea'}, {key: 'other', value: 'Other'}]};
-            milk = {placeholder: 'Do they take milk?', name:'milk', class: 'browser-default', type: 'select', required: true, values: [{key:'1', value:'yes'}, {key:'0', value:'No'}]};
-            sugar = {placeholder: 'How many sugars?', name: 'sugar', type: 'number', required: true, min: 0, max: 5};
-            submit = {placeholder: 'submit', type: 'submit', class: 'waves-effect waves-green btn-flat', value: 'Add'};         
-          +modal('brown lighten-3', {}, {})(id = 'add_form')
-            +form('Add Drinker', [name, 'row', drink, 'row', milk, 'row', sugar, 'row', submit])(id = 'add_form_data', method = 'post')
-          -
-            name = {placeholder: 'Who will you remove?', id: 'remove_name', name: 'name', class: 'browser-default', type: 'select', required: true, values: []};
-            submit = {placeholder: 'Remove', class: 'waves-effect waves-green btn-flat', type: 'submit'}
-          +modal('brown lighten-3', {}, {})(id = 'remove_form')
-            +form('Remove Drinker', [name, 'row', submit])(id = 'remove_form_data', method = 'post')
-          .row
-            h5 Current Drinkers
-            #current-drinkers.col.s12
+    #content.brown.lighten-3
+      #index-banner.section.no-pad-bot
+        .container
+          .row.center
+            span#selector_btn.modal-trigger(data-target='selector')
+              img.responsive-img(src='img/cup.png')
+            -
+              modal_content = {class : 'teal'};
+              can_btn = { id: 'can_make', value: 'Can' };
+              cant_btn = {id: 'cannot_make', value : 'Can\'t' };
+            +modal('brown lighten-3', can_btn, cant_btn)(id = 'selector')
+                #slt_head
+                #slt_content
+                
+            h5.header.light Solving arguments, and sharing the love
+        .container
+          .row.center
+            -
+              colour = 'orange darken-1';
+              icon  = 'mode_edit';
+              add_span = {icon: 'add', attributes: { id: 'add_btn', 'data-target': 'add_form', class: 'btn-floating blue-grey darken-2 modal-trigger' } };
+              delete_span = {icon: 'delete', attributes: { id: 'delete_btn', 'data-target': 'add_form', class: 'btn-floating blue-grey darken-2 modal-trigger' } };
+            +horizontal_action_buttons(colour, icon, [add_span, delete_span])
+            -
+              name = {placeholder: 'Name', name: 'name', class: 'validate', type: 'text', required: true};
+              drink = {placeholder: 'What do they drink?', name:'drink', class: 'browser-default', type: 'select', required: true, values: [{key:'Coffee', value: 'Coffee'}, {key: 'tea', value: 'Tea'}, {key: 'other', value: 'Other'}]};
+              milk = {placeholder: 'Do they take milk?', name:'milk', class: 'browser-default', type: 'select', required: true, values: [{key:'1', value:'yes'}, {key:'0', value:'No'}]};
+              sugar = {placeholder: 'How many sugars?', name: 'sugar', type: 'number', required: true, min: 0, max: 5};
+              submit = {placeholder: 'submit', type: 'submit', class: 'waves-effect waves-green btn-flat', value: 'Add'};         
+            +modal('brown lighten-3', {}, {})(id = 'add_form')
+              +form('Add Drinker', [name, 'row', drink, 'row', milk, 'row', sugar, 'row', submit])(id = 'add_form_data', method = 'post')
+            -
+              name = {placeholder: 'Who will you remove?', id: 'remove_name', name: 'name', class: 'browser-default', type: 'select', required: true, values: []};
+              submit = {placeholder: 'Remove', class: 'waves-effect waves-green btn-flat', type: 'submit'}
+            +modal('brown lighten-3', {}, {})(id = 'remove_form')
+              +form('Remove Drinker', [name, 'row', submit])(id = 'remove_form_data', method = 'post')
+            .row
+              h5 Current Drinkers
+              #current-drinkers.col.s12
       include includes/footer
     include includes/script
