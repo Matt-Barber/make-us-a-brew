@@ -1,0 +1,9 @@
+mixin apple_favicons(favs) 
+  each dimen in favs['dimen']
+    - dimension = dimen + 'x' + dimen;
+    link(rel=favs['rel'] sizes!=dimension, href='img/favicons/apple-icon-' + dimension + '.png')
+
+mixin favicons(favs)
+  each fav in favs
+    - dimension = fav + 'x' + fav;
+    link(rel='icon', type='image/png', sizes=dimension href='img/favicons/favicon-' + dimension + '.png')
