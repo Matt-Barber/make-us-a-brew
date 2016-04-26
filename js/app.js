@@ -1,8 +1,8 @@
-(function($, window, document, picker, table) {
-    $(function() {
-
+(function ($, window, document, picker, table) {
+    'use strict';
+    $(function () {
         // Standard modal_config
-        var modal_config = {dismissable: true, opacity: .5, in_duration: 300, out_duration: 300},
+        var modal_config = {dismissable: true, opacity: 0.5, in_duration: 300, out_duration: 300},
             // an array of drinkers - for testing (can be removed from live)
             test_drinkers = [];
         /**
@@ -85,7 +85,7 @@
             picker.addDrinker(t_d);
         });
         // lets grab some dom objects we'll need to play with
-        var slc_btn = document.getElementById('selector_btn');
+        var slc_btn = document.getElementById('selector_btn'),
             add_btn = document.getElementById('add_btn'),
             del_btn = document.getElementById('delete_btn'),
             add_form = document.getElementById('add_form_data'),
@@ -112,11 +112,11 @@
           We can then close the modal and prevent default - no refreshing for this!
         **/
         add_form.addEventListener('submit', function(e){
+            e.preventDefault();
             var attr = scan_form('add_form_data');
             picker.addDrinker(attr);
             table.add_row(tbl, attr);
             $('#add_form').closeModal();
-            e.preventDefault();
         }, false);
 
         /**
@@ -130,7 +130,7 @@
             var list = document.getElementById('remove_name');
             list.options.length = 1; // remove all items except the top most
             list.options[0].selected = true;
-
+            // loop over the remaining drinkers in the pot
             picker.getRemainingDrinkers().forEach(function (maker, index) {
                 var opt = document.createElement('option');
                 opt.value = maker;
@@ -144,11 +144,11 @@
           Could probably refactor into a single reusable function.
         **/
         del_form.addEventListener('submit', function(e) {
+            e.preventDefault();
             var attr = scan_form('remove_form_data');
             picker.removeDrinker(attr.name);
             table.remove_row(tbl, attr.name);
             $('#remove_form').closeModal();
-            e.preventDefault();
         }, false);
 
         /**
