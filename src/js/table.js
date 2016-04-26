@@ -47,7 +47,7 @@ function table() {
             search = function (tbl, search_term, data, func) {
                 var i = 0,
                     j = 0;
-                for (i = 0; i < tbl.rows.length-1; i += 1) {
+                for (i = 0; i < tbl.rows.length; i += 1) {
                     for (j = 0; j < tbl.rows[i].cells.length; j += 1) {
                         if (tbl.rows[i].cells[j].innerHTML === search_term) {
                             return func(tbl, tbl.rows[i], data, i);
