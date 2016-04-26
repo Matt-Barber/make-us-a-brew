@@ -4,6 +4,11 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+.modal {
+  width: 500px;
+}
+
 #selector_btn > img{
   max-width:50%;
 }
@@ -26,6 +31,14 @@ th {
 @media
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
+    /* Mobile giphy image */
+    #giphy {
+      min-width:100%;
+      max-width: 100%;
+    }
+    .modal {
+      width: 100%;
+    }
     /* Set all sub-elements to block types */
     table, thead, tbody, tr, th, td, tr {
         display:block;
