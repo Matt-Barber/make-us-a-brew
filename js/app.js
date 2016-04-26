@@ -76,8 +76,10 @@
 
         // create a table - and populate with the test data
         document.getElementById('current-drinkers').appendChild(
-            table.create_table('current-drinkers', test_drinkers, 'bordered highlight')
+            table.create_table('current-drinkers', test_drinkers, 'highlight bordered')
         );
+        // TODO: Encapsulate?
+        var tbl = document.getElementById('current-drinkers-table')
         // add the test drinkers to the picker
         test_drinkers.forEach(function (t_d, idx) {
             picker.addDrinker(t_d);
@@ -112,7 +114,7 @@
         add_form.addEventListener('submit', function(e){
             var attr = scan_form('add_form_data');
             picker.addDrinker(attr);
-            table.add_row(document.getElementById('current-drinkers-table'), attr);
+            table.add_row(tbl, attr);
             $('#add_form').closeModal();
             e.preventDefault();
         }, false);
@@ -144,7 +146,7 @@
         del_form.addEventListener('submit', function(e) {
             var attr = scan_form('remove_form_data');
             picker.removeDrinker(attr.name);
-            table.remove_row(document.getElementById('current-drinkers-table'), attr.name);
+            table.remove_row(tbl, attr.name);
             $('#remove_form').closeModal();
             e.preventDefault();
         }, false);
@@ -201,7 +203,7 @@
             );
             can_make_btn.onclick = function() {
                 picker.drinkerCan(maker);
-                table.highlight_row(document.getElementById('current-drinkers-table'), maker);
+                table.highlight_row(tbl, maker);
             };
             cant_make_btn.onclick = function() {
                 picker.drinkerCant(maker);
