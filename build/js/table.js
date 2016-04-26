@@ -7,9 +7,9 @@ function table() {
           @param array    data The values for the header row
         **/
         var create_header = function (tbl, data) {
-                var header = tbl.createTHead(),
+                var header = tbl.getElementsByTagName('thead')[0],
                     row = header.insertRow();
-                data.forEach(function (heading, index) {
+                Object.keys(data).forEach(function (heading, index) {
                     var cell = row.insertCell(index);
                     heading = heading.charAt(0).toUpperCase() + heading.slice(1);
                     cell.outerHTML = '<th>' + heading + '</th>';
@@ -24,7 +24,7 @@ function table() {
             **/
             populate = function (tbl, data, r_idx) {
                 if (typeof r_idx === 'undefined') {
-                    r_idx = 1;
+                    r_idx = 0;
                 }
                 // if data is an array recursively call with each element
                 if (Array.isArray(data)) {
@@ -32,7 +32,8 @@ function table() {
                         populate(tbl, item, r_idx);
                     });
                 } else {
-                    var row = tbl.insertRow(r_idx);
+                    var body = tbl.getElementsByTagName('tbody')[0],
+                        row = body.insertRow(r_idx);
                     Object.keys(data).forEach(function (key, index) {
                         var k_cell = row.insertCell(index);
                         k_cell.innerHTML = data[key];
@@ -60,11 +61,14 @@ function table() {
             **/
             create_table: function (parent_id, data, classes) {
                 var tbl = document.createElement('table'),
-                    headers = (Array.isArray(data)) ? Object.keys(data[0]) : Object.keys(data);
+                    data = Array.isArray(data) ? data : Array(data);
                 tbl.setAttribute('id', parent_id + '-table');
                 tbl.setAttribute('class', classes);
-                create_header(tbl, headers);
-                return populate(tbl, data);
+                tbl.appendChild(document.createElement('thead'));
+                tbl.appendChild(document.createElement('tbody'));
+                create_header(tbl, data[0]);
+                populate(tbl, data);
+                return tbl;
             },
             /**
              * Adds a row to the end of the table
