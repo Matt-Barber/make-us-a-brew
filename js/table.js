@@ -61,11 +61,14 @@ function table() {
             **/
             create_table: function (parent_id, data, classes) {
                 var tbl = document.createElement('table'),
+                    // if data is not an array - then make it one
                     data = Array.isArray(data) ? data : Array(data);
                 tbl.setAttribute('id', parent_id + '-table');
                 tbl.setAttribute('class', classes);
+                // Add a new THead and TBody to the table
                 tbl.appendChild(document.createElement('thead'));
                 tbl.appendChild(document.createElement('tbody'));
+                // Use one line to create the headers
                 create_header(tbl, data[0]);
                 populate(tbl, data);
                 return tbl;
