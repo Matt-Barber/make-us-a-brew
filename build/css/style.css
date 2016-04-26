@@ -1,11 +1,3 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
-
 .icon-block {
   padding: 0 15px;
 }
@@ -15,7 +7,9 @@
 .modal {
   width:500px;
 }
-
+/*
+  Table handling base state
+*/
 table {
   width: 100%;
   border-collapse: collapse;
@@ -26,10 +20,13 @@ td, th {
   padding: 6px;
   border: 1px solid black;
 }
-
+/**
+ * Mobile device scaling responsive
+**/
 @media
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
+    /* Set all sub-elements to block types */
     table, thead, tbody, tr, th, td, tr {
         display:block;
     }
@@ -38,7 +35,7 @@ only screen and (max-width: 760px),
         top: -9999px;
         left: -9999px;
     }
-
+    /* style our tr's and td's */
     tr {
         border-top: 1px solid black;
     }
@@ -49,7 +46,7 @@ only screen and (max-width: 760px),
         position: relative;
         padding-left: 50%;
     }
-
+    /* use the before selector to insert before our 'tds' */
     td:before {
         /* Now like a table header */
         position: absolute;
@@ -61,7 +58,7 @@ only screen and (max-width: 760px),
         white-space: nowrap;
     }
     /*
-	     Label the data
+	     Label the data before the TD tag - can't implicitly set this - maybe SCSS
 	  */
 	    td:nth-of-type(1):before { content: "Name"; font-weight: bold;}
 	    td:nth-of-type(2):before { content: "Drink"; font-weight: bold;}
