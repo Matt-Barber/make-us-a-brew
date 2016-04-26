@@ -7,6 +7,9 @@
 .modal {
   width:500px;
 }
+#selector_btn > img{
+  max-width:50%;
+}
 /*
   Table handling base state
 */
@@ -15,10 +18,10 @@ table {
   border-collapse: collapse;
 }
 
-td, th {
+th {
   text-align: left;
   padding: 6px;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
 }
 /**
  * Mobile device scaling responsive
