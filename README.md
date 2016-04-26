@@ -3,7 +3,7 @@
 Do you ever find yourself arguing about who's turn it is to make the tea? Shouldn't you get the coffees in?
 And the famous - "I got them before x, after y, while gallivanting with w". Consider your issues solved.
 
-##Check it out at [make-us-a-brew](matt-barber.github.io/make-us-a-brew)
+##Check it out at [make-us-a-brew](http://matt-barber.github.io/make-us-a-brew)
 
 Make us a brew allows you to
 
