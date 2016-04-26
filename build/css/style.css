@@ -7,6 +7,9 @@
 .modal {
   width:500px;
 }
+#selector_btn > img{
+  max-width:50%;
+}
 /*
   Table handling base state
 */
