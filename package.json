@@ -1,0 +1,11 @@
+{
+  "name": "make-us-a-brew",
+  "version": "0.0.5",
+  "devDependencies": {
+      "grunt": "~0.4.2",
+      "grunt-contrib-uglify": "~0.2.4",
+      "grunt-contrib-pug": "*",
+      "grunt-contrib-watch" : "~0.5.3"
+
+  }
+}
