@@ -33,8 +33,8 @@ only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
     /* Mobile giphy image */
     #giphy {
-      min-width:100%;
-      max-width: 100%;
+      min-width:80%;
+      max-width: 80%;
     }
     .modal {
       width: 100%;
