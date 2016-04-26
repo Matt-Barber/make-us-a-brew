@@ -193,6 +193,7 @@
                     img.setAttribute('class', 'responsive-img');
                     img.style.minWidth = '400px';
                     img.style.maxWidth = '400px';
+                    img.id = 'giphy';
                     img.src = data['data']['image_url'];
                     slt_content.innerHTML = '';
                     slt_content.appendChild(img);
