@@ -18,6 +18,8 @@ function picker() {
             };
         return {
             addDrinker: function (drinker) {
+                if (drinkers.hasOwnProperty(drinker.name))
+                  throw 'Name already taken';
                 drinkers[drinker.name] = true;
                 return drinkers;
             },
@@ -38,8 +40,7 @@ function picker() {
                 return getRemainingDrinkers();
             },
             getMaker: function () {
-                var maker = getRandom();
-                return !maker ? "No makers left" : maker;
+                return getRandom();
             },
             drinkerCan: function (name) {
                 drinkers[name] = false;
