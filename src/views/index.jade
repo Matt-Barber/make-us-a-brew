@@ -1,52 +1,80 @@
+//- The make us a brew application
+//- @author Matt Barber <mfmbarber at gmail.com>
+
+//- includes for various mixin functions
 include mixins/modal
 include mixins/form
 include mixins/horizontal_action_buttons
 include mixins/nav
 include mixins/favicons
-
 doctype html
 html
+  //- include our head data 
   include includes/head
-  body.brown.darken-1
-    +nav('Make us a brew')(class='brown darken-1', role='navigation')
-    #content.brown.lighten-3
+  
+  // some colours
+  -  body_class_colour = ['brown', 'darken-1']; // page background colours 
+  -  nav_class_colour = ['brown', 'darken-1']; // navigation colours 
+  -  content_class_colour = ['brown', 'lighten-3']; // content colours 
+  -  modal_class_colour = ['orange', 'lighten-4']; // modal colours 
+  -  tools_class_colour = ['orange', 'darken-1']; // tool tip colours? 
+  
+  body(class=body_class_colour)
+    //- navigation mixin takes a title and attributes
+    +nav('Make us a brew')(class=nav_class_colour, role='navigation')
+    .parallax-container
+      .parallax
+        img(src='img/coffee.jpg')
+    // wrap our content in a div so we can give it a background colour
+    #content(class=content_class_colour)
       #index-banner.section.no-pad-bot
         .container
           .row.center
+            // modal section built via trigger and modal
             span#selector_btn.modal-trigger(data-target='selector')
-              img.responsive-img(src='img/cup.png')
+              i.fa.fa-coffee(style='font-size: 20rem')
+            // the modal takes classes, optional success and error buttons and 
+            // any additional attributes
             -
-              modal_content = {class : 'teal'};
-              can_btn = { id: 'can_make', value: 'Can' };
-              cant_btn = {id: 'cannot_make', value : 'Can\'t' };
-            +modal('brown lighten-3', can_btn, cant_btn)(id = 'selector')
+              can_btn = { id: 'can_make', class: 'fa fa-thumbs-o-up fa-3x'};
+              cant_btn = {id: 'cannot_make', class: 'fa fa-thumbs-o-down fa-3x'};
+            +modal(modal_class_colour, can_btn, cant_btn)(id = 'selector')
+                // modal block
                 #slt_head
                 #slt_content
-                
+            // a nice sub heading - awwww    
             h5.header.light Solving arguments, and sharing the love
         .container
           .row.center
+            // our controls in the bottom right - to manage drinkers.... 
             -
               colour = 'orange darken-1';
-              icon  = 'mode_edit';
-              add_span = {icon: 'add', attributes: { id: 'add_btn', 'data-target': 'add_form', class: 'btn-floating blue-grey darken-2 modal-trigger' } };
-              delete_span = {icon: 'delete', attributes: { id: 'delete_btn', 'data-target': 'add_form', class: 'btn-floating blue-grey darken-2 modal-trigger' } };
+              icon  = 'fa-pencil';
+              add_span = {icon: 'fa-user-plus', attributes: { id: 'add_btn', 'data-target': 'add_form', class: 'btn-floating blue-grey darken-2 modal-trigger' } };
+              delete_span = {icon: 'fa-user-times', attributes: { id: 'delete_btn', 'data-target': 'add_form', class: 'btn-floating blue-grey darken-2 modal-trigger' } };
             +horizontal_action_buttons(colour, icon, [add_span, delete_span])
+            // ...and the corresponding modals
             -
               name = {placeholder: 'Name', name: 'name', class: 'validate', type: 'text', required: true};
               drink = {placeholder: 'What do they drink?', name:'drink', class: 'browser-default', type: 'select', required: true, values: [{key:'Coffee', value: 'Coffee'}, {key: 'tea', value: 'Tea'}, {key: 'other', value: 'Other'}]};
-              milk = {placeholder: 'Do they take milk?', name:'milk', class: 'browser-default', type: 'select', required: true, values: [{key:'1', value:'yes'}, {key:'0', value:'No'}]};
+              milk = {placeholder: 'Do they take milk?', name:'milk', class: 'browser-default', type: 'checkbox', value: 'yes'};
               sugar = {placeholder: 'How many sugars?', name: 'sugar', type: 'number', required: true, min: 0, max: 5};
               submit = {placeholder: 'submit', type: 'submit', class: 'waves-effect waves-green btn-flat', value: 'Add'};         
-            +modal('brown lighten-3', {}, {})(id = 'add_form')
+            +modal(modal_class_colour, {}, {})(id = 'add_form')
               +form('Add Drinker', [name, 'row', drink, 'row', milk, 'row', sugar, 'row', submit])(id = 'add_form_data', method = 'post')
             -
               name = {placeholder: 'Who will you remove?', id: 'remove_name', name: 'name', class: 'browser-default', type: 'select', required: true, values: []};
               submit = {placeholder: 'Remove', class: 'waves-effect waves-green btn-flat', type: 'submit'}
-            +modal('brown lighten-3', {}, {})(id = 'remove_form')
+            +modal(modal_class_colour, {}, {})(id = 'remove_form')
               +form('Remove Drinker', [name, 'row', submit])(id = 'remove_form_data', method = 'post')
             .row
-              h5 Current Drinkers
+              // where we display the current drinkers   
               #current-drinkers.col.s12
-      include includes/footer
+                h5 Current Drinkers
+    .parallax-container
+      .parallax
+        img(src='img/more_coffee.jpg')
+    // a simple footer 
+    include includes/footer
+    // include our scripts
     include includes/script

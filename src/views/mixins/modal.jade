@@ -1,6 +1,7 @@
 mixin modal_button(btn_attr)
   //change green to colour
-  button.modal-action.modal-close.wave-effect.waves-green.btn-flat&attributes(btn_attr)= btn_attr.value
+  - value = btn_attr.hasOwnProperty('value') ? btn_attr.value : '';
+  i.modal-action.modal-close.wave-effect.waves-green.btn-flat&attributes(btn_attr)= value
 
 mixin modal(colour, yes, no)
   .modal&attributes(attributes)  

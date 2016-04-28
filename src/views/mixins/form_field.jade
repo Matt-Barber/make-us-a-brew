@@ -6,7 +6,10 @@ mixin form_field(input)
         when 'text'
           input&attributes(input)
         when 'number'
-          input&attributes(input)
+          - input.type = 'range';
+          label= input.placeholder
+          p.range-field
+            input&attributes(input)
         when 'select'
           - values = input.values;
           - delete input.values;
@@ -15,6 +18,14 @@ mixin form_field(input)
             option(disabled, selected)= input.placeholder 
             each value in values
               option(value=value.key)= value.value
+        when 'checkbox'
+          label(for=input.name)= input.placeholder
+          div.switch
+            label
+              | no
+              input(type='checkbox', name=input.name id=input.name value=input.value)
+              span.lever
+              | yes
         when 'submit'
           - delete input.type
           button(type='submit', class=input.class)= input.placeholder

@@ -17,23 +17,24 @@
     <meta property="og:locale" content="en_GB">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make us a brew</title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/materialize.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-icon-57x57.png"/>
-    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-icon-60x60.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-icon-76x76.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-icon-114x114.png"/>
-    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-icon-152x152.png"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-icon-180x180.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicons/favicon-96x96.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png"/>
+    <link rel="apple-touch-icon" href="img/favicons/apple-icon-57x57.png"/>
+    <link rel="apple-touch-icon" href="img/favicons/apple-icon-60x60.png"/>
+    <link rel="apple-touch-icon" href="img/favicons/apple-icon-72x72.png"/>
+    <link rel="apple-touch-icon" href="img/favicons/apple-icon-76x76.png"/>
+    <link rel="apple-touch-icon" href="img/favicons/apple-icon-114x114.png"/>
+    <link rel="apple-touch-icon" href="img/favicons/apple-icon-152x152.png"/>
+    <link rel="apple-touch-icon" href="img/favicons/apple-icon-180x180.png"/>
+    <link rel="icon" type="image/png" href="img/favicons/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" href="img/favicons/favicon-96x96.png"/>
+    <link rel="icon" type="image/png" href="img/favicons/favicon-16x16.png"/>
     <link href="img/favicons/manifest.json" rel="manifest">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="img/favicons/ms-icon-144x144.png">
   </head>
+  <!-- some colours-->
   <body class="brown darken-1">
     <nav role="navigation" class="brown darken-1">
       <div class="nav-wrapper">
@@ -42,35 +43,44 @@
         </ul>
       </div>
     </nav>
+    <div class="parallax-container">
+      <div class="parallax"><img src="img/coffee.jpg"></div>
+    </div>
+    <!-- wrap our content in a div so we can give it a background colour-->
     <div id="content" class="brown lighten-3">
       <div id="index-banner" class="section no-pad-bot">
         <div class="container">
-          <div class="row center"><span id="selector_btn" data-target="selector" class="modal-trigger"><img src="img/cup.png" class="responsive-img"></span>
+          <div class="row center">
+            <!-- modal section built via trigger and modal--><span id="selector_btn" data-target="selector" class="modal-trigger"><i style="font-size: 20rem" class="fa fa-coffee"></i></span>
+            <!-- the modal takes classes, optional success and error buttons and -->
+            <!-- any additional attributes-->
             <div class="modal" id="selector"> 
-              <div class="modal-content brown lighten-3">
+              <div class="modal-content orange lighten-4">
+                <!-- modal block-->
                 <div id="slt_head"></div>
                 <div id="slt_content"></div>
               </div>
-              <div class="modal-footer brown lighten-3">
-                <!--change green to colour-->
-                <button class="modal-action modal-close wave-effect waves-green btn-flat" id="can_make" value="Can">Can</button>
-                <!--change green to colour-->
-                <button class="modal-action modal-close wave-effect waves-green btn-flat" id="cannot_make" value="Can't">Can't</button>
+              <div class="modal-footer orange lighten-4">
+                <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat fa fa-thumbs-o-up fa-3x" id="can_make"></i>
+                <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat fa fa-thumbs-o-down fa-3x" id="cannot_make"></i>
               </div>
             </div>
+            <!-- a nice sub heading - awwww    -->
             <h5 class="header light">Solving arguments, and sharing the love</h5>
           </div>
         </div>
         <div class="container">
           <div class="row center">
-            <div style="bottom:45px; right:24px;" class="fixed-action-btn horizontal"><a class="btn-floating btn-large orange darken-1"><i class="large material-icons">mode_edit</i></a>
+            <!-- our controls in the bottom right - to manage drinkers.... -->
+            <div style="bottom:45px; right:24px;" class="fixed-action-btn horizontal"><a class="btn-floating btn-large z-depth-3 orange darken-1"><i aria-hidden="true" class="fa fa-pencil"> </i></a>
               <ul>
-                <li><span id="add_btn" data-target="add_form" class="btn-floating blue-grey darken-2 modal-trigger"><i class="material-icons">add</i></span></li>
-                <li><span id="delete_btn" data-target="add_form" class="btn-floating blue-grey darken-2 modal-trigger"><i class="material-icons">delete</i></span></li>
+                <li><span id="add_btn" data-target="add_form" class="btn-floating blue-grey darken-2 modal-trigger"><i aria-hidden="true" class="fa fa-user-plus"></i></span></li>
+                <li><span id="delete_btn" data-target="add_form" class="btn-floating blue-grey darken-2 modal-trigger"><i aria-hidden="true" class="fa fa-user-times"></i></span></li>
               </ul>
             </div>
+            <!-- ...and the corresponding modals-->
             <div class="modal" id="add_form"> 
-              <div class="modal-content brown lighten-3">
+              <div class="modal-content orange lighten-4">
                 <h4>Add Drinker</h4>
                 <form id="add_form_data" method="post">
                   <div class="input_field">
@@ -93,18 +103,22 @@
                     
                   </div>
                   <div class="input_field">
-                    <select placeholder="Do they take milk?" name="milk" class="browser-default" required="required">
-                      <option disabled="disabled" selected="selected">Do they take milk?</option>
-                      <option value="1">yes</option>
-                      <option value="0">No</option>
-                    </select>
+                    <label for="milk">Do they take milk?</label>
+                    <div class="switch">
+                      <label>no
+                        <input type="checkbox" name="milk" id="milk" value="yes"/><span class="lever"></span>yes
+                      </label>
+                    </div>
                   </div>
                   <div class="row">
                     <!--insert a row-->
                     
                   </div>
                   <div class="input_field">
-                    <input placeholder="How many sugars?" name="sugar" type="number" required="required" min="0" max="5"/>
+                    <label>How many sugars?</label>
+                    <p class="range-field">
+                      <input placeholder="How many sugars?" name="sugar" type="range" required="required" min="0" max="5"/>
+                    </p>
                   </div>
                   <div class="row">
                     <!--insert a row-->
@@ -115,15 +129,13 @@
                   </div>
                 </form>
               </div>
-              <div class="modal-footer brown lighten-3">
-                <!--change green to colour-->
-                <button class="modal-action modal-close wave-effect waves-green btn-flat"></button>
-                <!--change green to colour-->
-                <button class="modal-action modal-close wave-effect waves-green btn-flat"></button>
+              <div class="modal-footer orange lighten-4">
+                <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat"></i>
+                <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat"></i>
               </div>
             </div>
             <div class="modal" id="remove_form"> 
-              <div class="modal-content brown lighten-3">
+              <div class="modal-content orange lighten-4">
                 <h4>Remove Drinker</h4>
                 <form id="remove_form_data" method="post">
                   <div class="input_field">
@@ -140,50 +152,55 @@
                   </div>
                 </form>
               </div>
-              <div class="modal-footer brown lighten-3">
-                <!--change green to colour-->
-                <button class="modal-action modal-close wave-effect waves-green btn-flat"></button>
-                <!--change green to colour-->
-                <button class="modal-action modal-close wave-effect waves-green btn-flat"></button>
+              <div class="modal-footer orange lighten-4">
+                <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat"></i>
+                <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat"></i>
               </div>
             </div>
             <div class="row">
-              <h5>Current Drinkers</h5>
-              <div id="current-drinkers" class="col s12"></div>
+              <!-- where we display the current drinkers   -->
+              <div id="current-drinkers" class="col s12">
+                <h5>Current Drinkers</h5>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <footer class="page-footer brown darken-1">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">From the barber shop</h5>
-              <p class="grey-text text-lighten-4">A crazy haired developer, caught inside a crazier haired developer</p>
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">Find out more</h5>
-              <ul>
-                <li><a href="https://twitter.com/mfmbarber" class="white-text">Twitter</a></li>
-                <li><a href="https://github.com/matt-barber" class="white-text">Github</a></li>
-              </ul>
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">Other crazy contraptions</h5>
-              <ul>
-                <li><a href="#!" class="white-text">Watch this space</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-copyright">
-          <div class="container">
-            <Made>with love</Made><span class="orange-text text-lighten-3">
-              <all>code free to use</all></span>
-          </div>
-        </div>
-      </footer>
     </div>
+    <div class="parallax-container">
+      <div class="parallax"><img src="img/more_coffee.jpg"></div>
+    </div>
+    <!-- a simple footer -->
+    <footer class="page-footer brown darken-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">From the barber shop</h5>
+            <p class="grey-text text-lighten-4">A crazy haired developer, caught inside a crazier haired developer</p>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Find out more</h5>
+            <ul>
+              <li><a href="https://twitter.com/mfmbarber" class="white-text">Twitter</a></li>
+              <li><a href="https://github.com/matt-barber" class="white-text">Github</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Other crazy contraptions</h5>
+            <ul>
+              <li><a href="#!" class="white-text">Watch this space</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          <Made>with love</Made><span class="orange-text text-lighten-3">
+            <all>code free to use</all></span>
+        </div>
+      </div>
+    </footer>
+    <!-- include our scripts-->
     <script src="js/jquery-2.2.3.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/picker.js"></script>
