@@ -5,6 +5,7 @@
         var modal_config = {dismissable: true, opacity: 0.5, in_duration: 300, out_duration: 300},
             // an array of drinkers - for testing (can be removed from live)
             test_drinkers = [];
+        $('.parallax').parallax();
         /**
          * Scan a form and return an obj of names and values (inputs)
          * @param string  form_id
@@ -17,8 +18,10 @@
                 attr = {};
             for (var i = 0; i < elem.length; i++ ) {
                 if (elem[i].type !== 'submit') {
-                    attr[elem[i].name] = elem[i].value;
-                    elem[i].value = '';
+                  if ((elem[i].type === 'checkbox' && elem[i].checked === true) || (elem[i].type !=='checkbox')) {
+                      attr[elem[i].name] = elem[i].value;
+                      elem[i].value = '';
+                    }
                 }
             }
             return attr;
@@ -76,7 +79,7 @@
 
         // create a table - and populate with the test data
         document.getElementById('current-drinkers').appendChild(
-            table.create_table('current-drinkers', test_drinkers, 'highlight bordered')
+            table.create_table('current-drinkers', test_drinkers, 'highlight')
         );
         // TODO: Encapsulate?
         var tbl = document.getElementById('current-drinkers-table')
@@ -89,9 +92,7 @@
             add_btn = document.getElementById('add_btn'),
             del_btn = document.getElementById('delete_btn'),
             add_form = document.getElementById('add_form_data'),
-            del_form = document.getElementById('remove_form_data'),
-            // some cheeky tags to make giphy a little more unpredictable
-            api_tags = ['caffeine', 'coffee', 'tea', 'brew'];
+            del_form = document.getElementById('remove_form_data');
 
         /**
           OnClick open the add drinker modal.
@@ -99,10 +100,9 @@
           As disabled elements lose their positioning - a bit odd
         **/
         add_btn.onclick = function() {
-            var drinks_list = document.getElementsByName('drink'),
-                milk_list = document.getElementsByName('milk');
+            var drinks_list = document.getElementsByName('drink');
             drinks_list[0].options[0].selected = true;
-            milk_list[0].options[0].selected = true;
+            //milk_list[0].options[0].selected = true;
             $('#add_form').openModal(modal_config);
         };
         /**
@@ -114,9 +114,22 @@
         add_form.addEventListener('submit', function(e){
             e.preventDefault();
             var attr = scan_form('add_form_data');
-            picker.addDrinker(attr);
-            table.add_row(tbl, attr);
-            $('#add_form').closeModal();
+            if (!attr.hasOwnProperty('milk')) {
+              attr.milk = 'no';
+            }
+            try {
+              picker.addDrinker(attr);
+              table.add_row(tbl, {
+                name : attr.name,
+                drink: attr.drink,
+                milk: attr.milk,
+                sugar: attr.sugar
+              });
+              document.getElementById('current-drinkers').style.display = 'block';
+              $('#add_form').closeModal();
+            } catch (err) {
+
+            }
         }, false);
 
         /**
@@ -148,6 +161,9 @@
             var attr = scan_form('remove_form_data');
             picker.removeDrinker(attr.name);
             table.remove_row(tbl, attr.name);
+            if (table.row_count(tbl) === 0) {
+                document.getElementById('current-drinkers').style.display = 'none';
+            }
             $('#remove_form').closeModal();
         }, false);
 
@@ -160,10 +176,12 @@
         slc_btn.onclick = function() {
             // On click, get a maker, and all the things we are going to populate
             var maker = picker.getMaker(),
+                api_tags = [],
                 selector = document.getElementById('selector'),
                 slt_head = document.getElementById('slt_head'),
                 slt_content = document.getElementById('slt_content'),
                 heading = document.createElement('h5'),
+                heading_value = '',
                 progress = document.createElement('div'),
                 bar = document.createElement('div'),
                 can_make_btn = document.getElementById('can_make'),
@@ -172,7 +190,16 @@
             slt_content.innerHTML = '';
             slt_head.innerHTML = '';
             // set the heading for the modal
-            heading.innerHTML = maker.charAt(0).toUpperCase() + maker.slice(1);
+            if (!maker) {
+              api_tags = ['nope', 'grumpy', 'no'];
+              can_make_btn.style.display = 'none';
+              heading_value = (picker.getDrinkers().length > 0) ? 'No drinkers left, restart!' : 'Add drinkers to get started!'
+            } else {
+              api_tags = ['coffee', 'caffeine', 'tea', 'energy'];
+              can_make_btn.style.display = 'block';
+              heading_value = maker;
+            }
+            heading.innerHTML = heading_value.charAt(0).toUpperCase() + heading_value.slice(1);
             slt_head.appendChild(heading);
             // add a progess bar to the modal - while we wait for the ajax
             progress.setAttribute('class', 'progress')

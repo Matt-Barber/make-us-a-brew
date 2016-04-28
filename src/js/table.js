@@ -107,6 +107,12 @@ function table() {
                     row.style.color = '#fff';
                 };
                 search(tbl, key, {}, func);
+            },
+            /**
+             * Return a count of the current rows in the table
+             **/
+            row_count: function (tbl) {
+              return tbl.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
             }
         };
     })();
