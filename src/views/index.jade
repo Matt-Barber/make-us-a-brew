@@ -16,7 +16,7 @@ html
   -  body_class_colour = ['brown', 'darken-1']; // page background colours 
   -  nav_class_colour = ['brown', 'darken-1']; // navigation colours 
   -  content_class_colour = ['brown', 'lighten-3']; // content colours 
-  -  modal_class_colour = ['orange', 'lighten-4']; // modal colours 
+  -  modal_class_colour = ['blue-grey', 'lighten-4']; // modal colours 
   -  tools_class_colour = ['orange', 'darken-1']; // tool tip colours? 
   
   body(class=body_class_colour)
@@ -26,7 +26,7 @@ html
       .parallax
         img(src='img/coffee.jpg')
     // wrap our content in a div so we can give it a background colour
-    #content(class=content_class_colour)
+    #content.z-depth-2(class=content_class_colour)
       #index-banner.section.no-pad-bot
         .container
           .row.center
@@ -56,11 +56,24 @@ html
             // ...and the corresponding modals
             -
               name = {placeholder: 'Name', name: 'name', class: 'validate', type: 'text', required: true};
-              drink = {placeholder: 'What do they drink?', name:'drink', class: 'browser-default', type: 'select', required: true, values: [{key:'Coffee', value: 'Coffee'}, {key: 'tea', value: 'Tea'}, {key: 'other', value: 'Other'}]};
+              drink = {
+                placeholder: 'What do they drink?', 
+                name:'drink', 
+                class: 'icons initialized', 
+                type: 'select', 
+                required: true, 
+                values: [
+                  {key:'Coffee', options: {value: 'Coffee', 'data-icon': 'img/coffee_icon.png', class: ['left', 'circle']}}, 
+                  {key: 'Tea', options: {value: 'Tea', 'data-icon': 'img/tea_icon.png', class: ['left', 'circle']}}, 
+                  {key: 'Other', options: {value: 'Other', 'data-icon': 'img/other_icon.png', class: ['left', 'circle']}}
+                ]
+              };
               milk = {placeholder: 'Do they take milk?', name:'milk', class: 'browser-default', type: 'checkbox', value: 'yes'};
               sugar = {placeholder: 'How many sugars?', name: 'sugar', type: 'number', required: true, min: 0, max: 5};
               submit = {placeholder: 'submit', type: 'submit', class: 'waves-effect waves-green btn-flat', value: 'Add'};         
             +modal(modal_class_colour, {}, {})(id = 'add_form')
+              // Coffee by André Luiz Gollo from the Noun Project
+              // Tea by Megan Mitchell from the Noun Project
               +form('Add Drinker', [name, 'row', drink, 'row', milk, 'row', sugar, 'row', submit])(id = 'add_form_data', method = 'post')
             -
               name = {placeholder: 'Who will you remove?', id: 'remove_name', name: 'name', class: 'browser-default', type: 'select', required: true, values: []};
@@ -73,7 +86,7 @@ html
                 h5 Current Drinkers
     .parallax-container
       .parallax
-        img(src='img/more_coffee.jpg')
+        img(src='img/coffee.jpg')
     // a simple footer 
     include includes/footer
     // include our scripts
