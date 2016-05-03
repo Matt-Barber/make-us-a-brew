@@ -5,6 +5,7 @@
         var modal_config = {dismissable: true, opacity: 0.5, in_duration: 300, out_duration: 300},
             // an array of drinkers - for testing (can be removed from live)
             test_drinkers = [];
+        $('select').material_select();
         $('.parallax').parallax();
         /**
          * Scan a form and return an obj of names and values (inputs)
@@ -218,8 +219,7 @@
                 function(data){
                     var img = document.createElement('img');
                     img.setAttribute('class', 'responsive-img');
-                    img.style.minWidth = '400px';
-                    img.style.maxWidth = '400px';
+                    img.setAttribute('style', 'border-radius: 50%;');
                     img.id = 'giphy';
                     img.src = data['data']['image_url'];
                     slt_content.innerHTML = '';

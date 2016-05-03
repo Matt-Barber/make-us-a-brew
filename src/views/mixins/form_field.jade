@@ -1,34 +1,37 @@
 mixin form_field(input)
   if input !== 'row'
-    .input_field
-      - input.type = input.hasOwnProperty('type') ? input.type : 'text'; 
-      case input.type
-        when 'text'
+    - input.type = input.hasOwnProperty('type') ? input.type : 'text'; 
+    case input.type
+      when 'text'
+        .input-field.col.s12
           input&attributes(input)
-        when 'number'
-          - input.type = 'range';
+      when 'number'
+        - input.type = 'range';
+        .input-field.col.s12
           label= input.placeholder
           p.range-field
             input&attributes(input)
-        when 'select'
-          - values = input.values;
-          - delete input.values;
-          - delete input.type;
+      when 'select'
+        - values = input.values;
+        - delete input.values;
+        - delete input.type;
+        .input-field.col.s12
           select&attributes(input)
-            option(disabled, selected)= input.placeholder 
+            option(value='Choose one', selected, disabled)= 'Choose one'
             each value in values
-              option(value=value.key)= value.value
-        when 'checkbox'
-          label(for=input.name)= input.placeholder
-          div.switch
-            label
-              | no
-              input(type='checkbox', name=input.name id=input.name value=input.value)
-              span.lever
-              | yes
-        when 'submit'
-          - delete input.type
-          button(type='submit', class=input.class)= input.placeholder
+              option&attributes(value.options)= value.key
+          label= input.placeholder
+      when 'checkbox'
+        label(for=input.name)= input.placeholder
+        div.switch
+          label
+            | no
+            input(type='checkbox', name=input.name id=input.name value=input.value)
+            span.lever
+            | yes
+      when 'submit'
+        - delete input.type
+        button(type='submit', class=input.class)= input.placeholder
   else
     .row
       //insert a row

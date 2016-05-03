@@ -23,13 +23,25 @@ module.exports = function (grunt) {
                 pretty: true
             }
         }
-      }
+    },
+    cssmin: {
+        target: {
+            files: [{
+                expand: true,
+                cwd: 'src/css',
+                src: ['*.css', '!*.min.css'],
+                dest: 'build/css',
+                ext: '.min.css'
+            }]
+        }
+    }
 });
 
 // load plugins
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-contrib-pug');
+grunt.loadNpmTasks('grunt-contrib-cssmin');
 // register at least this one task
-grunt.registerTask('default', ['uglify', 'pug']);
+grunt.registerTask('default', ['uglify', 'pug', 'cssmin']);
 };

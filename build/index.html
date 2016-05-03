@@ -19,7 +19,7 @@
     <title>Make us a brew</title>
     <link href="Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/materialize.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
     <link rel="apple-touch-icon" href="img/favicons/apple-icon-57x57.png"/>
     <link rel="apple-touch-icon" href="img/favicons/apple-icon-60x60.png"/>
     <link rel="apple-touch-icon" href="img/favicons/apple-icon-72x72.png"/>
@@ -37,7 +37,7 @@
   <!-- some colours-->
   <body class="brown darken-1">
     <nav role="navigation" class="brown darken-1">
-      <div class="nav-wrapper">
+      <div class="nav-wrapper z-depth-2">
         <div class="brand-logo center">Make us a brew</div>
         <ul class="right hide-on-med-and-down">
         </ul>
@@ -47,7 +47,7 @@
       <div class="parallax"><img src="img/coffee.jpg"></div>
     </div>
     <!-- wrap our content in a div so we can give it a background colour-->
-    <div id="content" class="brown lighten-3">
+    <div id="content" class="z-depth-2 brown lighten-3">
       <div id="index-banner" class="section no-pad-bot">
         <div class="container">
           <div class="row center">
@@ -55,12 +55,12 @@
             <!-- the modal takes classes, optional success and error buttons and -->
             <!-- any additional attributes-->
             <div class="modal" id="selector"> 
-              <div class="modal-content orange lighten-4">
+              <div class="modal-content blue-grey lighten-4">
                 <!-- modal block-->
                 <div id="slt_head"></div>
                 <div id="slt_content"></div>
               </div>
-              <div class="modal-footer orange lighten-4">
+              <div class="modal-footer blue-grey lighten-4">
                 <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat fa fa-thumbs-o-up fa-3x" id="can_make"></i>
                 <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat fa fa-thumbs-o-down fa-3x" id="cannot_make"></i>
               </div>
@@ -80,41 +80,42 @@
             </div>
             <!-- ...and the corresponding modals-->
             <div class="modal" id="add_form"> 
-              <div class="modal-content orange lighten-4">
+              <div class="modal-content blue-grey lighten-4">
+                <!-- Coffee by André Luiz Gollo from the Noun Project-->
+                <!-- Tea by Megan Mitchell from the Noun Project-->
                 <h4>Add Drinker</h4>
                 <form id="add_form_data" method="post">
-                  <div class="input_field">
+                  <div class="input-field col s12">
                     <input placeholder="Name" name="name" class="validate" type="text" required="required"/>
                   </div>
                   <div class="row">
                     <!--insert a row-->
                     
                   </div>
-                  <div class="input_field">
-                    <select placeholder="What do they drink?" name="drink" class="browser-default" required="required">
-                      <option disabled="disabled" selected="selected">What do they drink?</option>
-                      <option value="Coffee">Coffee</option>
-                      <option value="tea">Tea</option>
-                      <option value="other">Other</option>
+                  <div class="input-field col s12">
+                    <select placeholder="What do they drink?" name="drink" class="icons initialized" required="required">
+                      <option value="Choose one" selected="selected" disabled="disabled">Choose one</option>
+                      <option value="Coffee" data-icon="img/coffee_icon.png" class="left circle">Coffee</option>
+                      <option value="Tea" data-icon="img/tea_icon.png" class="left circle">Tea</option>
+                      <option value="Other" data-icon="img/other_icon.png" class="left circle">Other</option>
                     </select>
+                    <label>What do they drink?</label>
                   </div>
                   <div class="row">
                     <!--insert a row-->
                     
                   </div>
-                  <div class="input_field">
-                    <label for="milk">Do they take milk?</label>
-                    <div class="switch">
-                      <label>no
-                        <input type="checkbox" name="milk" id="milk" value="yes"/><span class="lever"></span>yes
-                      </label>
-                    </div>
+                  <label for="milk">Do they take milk?</label>
+                  <div class="switch">
+                    <label>no
+                      <input type="checkbox" name="milk" id="milk" value="yes"/><span class="lever"></span>yes
+                    </label>
                   </div>
                   <div class="row">
                     <!--insert a row-->
                     
                   </div>
-                  <div class="input_field">
+                  <div class="input-field col s12">
                     <label>How many sugars?</label>
                     <p class="range-field">
                       <input placeholder="How many sugars?" name="sugar" type="range" required="required" min="0" max="5"/>
@@ -124,35 +125,32 @@
                     <!--insert a row-->
                     
                   </div>
-                  <div class="input_field">
-                    <button type="submit" class="waves-effect waves-green btn-flat">submit</button>
-                  </div>
+                  <button type="submit" class="waves-effect waves-green btn-flat">submit</button>
                 </form>
               </div>
-              <div class="modal-footer orange lighten-4">
+              <div class="modal-footer blue-grey lighten-4">
                 <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat"></i>
                 <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat"></i>
               </div>
             </div>
             <div class="modal" id="remove_form"> 
-              <div class="modal-content orange lighten-4">
+              <div class="modal-content blue-grey lighten-4">
                 <h4>Remove Drinker</h4>
                 <form id="remove_form_data" method="post">
-                  <div class="input_field">
+                  <div class="input-field col s12">
                     <select placeholder="Who will you remove?" id="remove_name" name="name" class="browser-default" required="required">
-                      <option disabled="disabled" selected="selected">Who will you remove?</option>
+                      <option value="Choose one" selected="selected" disabled="disabled">Choose one</option>
                     </select>
+                    <label>Who will you remove?</label>
                   </div>
                   <div class="row">
                     <!--insert a row-->
                     
                   </div>
-                  <div class="input_field">
-                    <button type="submit" class="waves-effect waves-green btn-flat">Remove</button>
-                  </div>
+                  <button type="submit" class="waves-effect waves-green btn-flat">Remove</button>
                 </form>
               </div>
-              <div class="modal-footer orange lighten-4">
+              <div class="modal-footer blue-grey lighten-4">
                 <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat"></i>
                 <!--change green to colour--><i class="modal-action modal-close wave-effect waves-green btn-flat"></i>
               </div>
@@ -168,7 +166,7 @@
       </div>
     </div>
     <div class="parallax-container">
-      <div class="parallax"><img src="img/more_coffee.jpg"></div>
+      <div class="parallax"><img src="img/coffee.jpg"></div>
     </div>
     <!-- a simple footer -->
     <footer class="page-footer brown darken-1">
